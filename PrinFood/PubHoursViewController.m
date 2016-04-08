@@ -22,7 +22,7 @@
                      _dinnerGrill, _dinnerShake];
     
     for (UILabel *object in _labelsArray) {
-        object.text = @"Couldn't upload time";
+        object.text = @"Couldn't download time";
     }
     
     // Displays current date.
@@ -46,7 +46,7 @@
         dayOfWeek = [self nextDayOfWeek];
     }
     
-    // Gets time for breakfast.
+    // Gets times for breakfast.
     PFQuery *queryBreakfast = [PFQuery queryWithClassName:@"PubTimes"];
     [queryBreakfast whereKey:@"dayOfWeek" equalTo: dayOfWeek];
     [queryBreakfast whereKey:@"meal" equalTo: @"Breakfast"];
@@ -67,6 +67,7 @@
         }
     }];
     
+    // Gets times for lunch.
     PFQuery *queryLunch = [PFQuery queryWithClassName:@"PubTimes"];
     [queryLunch whereKey:@"dayOfWeek" equalTo: dayOfWeek];
     [queryLunch whereKey:@"meal" equalTo: @"Lunch"];
@@ -87,6 +88,7 @@
         }
     }];
     
+    // Gets times for dinner.
     PFQuery *queryDinner = [PFQuery queryWithClassName:@"PubTimes"];
     [queryDinner whereKey:@"dayOfWeek" equalTo: dayOfWeek];
     [queryDinner whereKey:@"meal" equalTo: @"Dinner"];
@@ -151,11 +153,15 @@
 - (IBAction)segmentButton:(id)sender {
     if (segmentController.selectedSegmentIndex == 0) {
         // Today was chosen.
+        _BehindDateImage.backgroundColor = [UIColor colorWithRed:170.0/255.0f green:192.0/255.0f blue:222.0/255.0f alpha:1.0];
+        segmentController.backgroundColor = [UIColor colorWithRed:170.0/255.0f green:192.0/255.0f blue:222.0/255.0f alpha:1.0];
         _currentDateLabel.text = [self currentDate];
         // Refresh the table.
         [self queryMealTimes];
     } else if (segmentController.selectedSegmentIndex == 1){
         // Tomorrow was chosen.
+        segmentController.backgroundColor = [UIColor colorWithRed:170.0/255.0f green:210.0/255.0f blue:255.0/255.0f alpha:1.0];
+        _BehindDateImage.backgroundColor = [UIColor colorWithRed:170.0/255.0f green:210.0/255.0f blue:255.0/255.0f alpha:1.0];
         _currentDateLabel.text = [self nextDate];
         // Refresh the table.
         [self queryMealTimes];

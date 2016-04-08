@@ -23,31 +23,6 @@
     
     self.profilePictureButton.profileID = @"me";
     
-    self.saveProfilePictureToParse;
-    
-    PFQuery *query = [PFQuery queryWithClassName:@"CheckIn"];
-    [query whereKey:@"name" equalTo:[self userName]];
-    
-    [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
-        if (object == nil) {
-            // User doesn't exist
-            // NSLog(@"User exists");
-            
-            
-            PFObject *checkIn = [PFObject objectWithClassName:@"CheckIn"];
-            checkIn[@"name"] = [self userName];
-            [checkIn saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-                if (succeeded) {
-                    [[NSNotificationCenter defaultCenter] postNotificationName:@"YourNotificationName"
-                                                                        object:nil];
-                } else {
-                    // There was a problem, check error.description
-                }
-            }];
-    
-        }
-    }];
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -65,14 +40,10 @@
 
 - (IBAction)checkInDining:(id)sender {
     
+    //self.initialSaveToDatabase;
+    
     [[NSNotificationCenter defaultCenter] postNotificationName:@"YourNotificationName"
                                                         object:nil];
-    
-    // Work in progress: FB profile pictures
-    // UIImage *img = [self.profilePictureButton imageForState:UIControlStateNormal];
-    // UIImage *image = self.profilePictureButton.currentImage;
-    //NSString *userFBID = [FBSDKProfile currentProfile].linkURL;
-    
     
     PFQuery *query = [PFQuery queryWithClassName:@"CheckIn"];
     [query whereKey:@"name" equalTo:[self userName]];
@@ -133,6 +104,8 @@
     }
 
 - (IBAction)checkInPub:(id)sender {
+    
+    // self.initialSaveToDatabase;
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"YourNotificationName"
                                                         object:nil];
@@ -239,7 +212,7 @@
             NSData * imageData = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString: photoUrl]];
             
             // Convert to JPEG with 50% quality
-            //NSData* data = UIImageJPEGRepresentation(imageView.image, 0.5f);
+            // NSData* data = UIImageJPEGRepresentation(imageView.image, 0.5f);
             PFFile *imageFile = [PFFile fileWithName:@"ProfilePicture.jpg" data:imageData];
             
                     
@@ -268,6 +241,35 @@
         }
     }
     ];
+
+}
+
+-(void)initialSaveToDatabase {
+    
+    self.saveProfilePictureToParse;
+    
+    PFQuery *query = [PFQuery queryWithClassName:@"CheckIn"];
+    [query whereKey:@"name" equalTo:[self userName]];
+    
+    [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+        if (object == nil) {
+            // User doesn't exist
+            // NSLog(@"User exists");
+            
+            
+            PFObject *checkIn = [PFObject objectWithClassName:@"CheckIn"];
+            checkIn[@"name"] = [self userName];
+            [checkIn saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                if (succeeded) {
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"YourNotificationName"
+                                                                        object:nil];
+                } else {
+                    // There was a problem, check error.description
+                }
+            }];
+            
+        }
+    }];
 
 }
 

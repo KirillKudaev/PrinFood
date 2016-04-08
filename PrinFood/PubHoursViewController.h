@@ -11,11 +11,14 @@
 @interface PubHoursViewController : UIViewController {
     
     IBOutlet UISegmentedControl *segmentController;
+
 }
 
 - (IBAction)segmentButton:(id)sender;
 
 @property (strong, nonatomic) IBOutlet UILabel *currentDateLabel;
+
+@property (weak, nonatomic) IBOutlet UIImageView *BehindDateImage;
 
 @property (strong, nonatomic) IBOutlet UILabel *breakfastGrill;
 @property (strong, nonatomic) IBOutlet UILabel *breakfastShake;

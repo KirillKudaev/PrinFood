@@ -25,7 +25,7 @@
                                                object:nil];
     
     _friendsArray = [NSMutableArray arrayWithObjects:
-                    @"Couldn't upload friends", nil];
+                    @"Couldn't download", nil];
     _placesArray =[NSMutableArray arrayWithObjects:
                    @"", nil];
 
@@ -107,6 +107,24 @@
                 NSString *AMorPM = [time substringWithRange:NSMakeRange(6,2)];
                 
                 // Display if user checked in in last ~2 hours // We have to change this part
+                // works for iPhone 4S, iPhone 5
+                if ( ((hour != [self currentHour]) && (hour != [self currentHour] - 1)) || (AMorPM == [self currentAMorPM])) {
+                } else {
+                    NSString *name = object[@"name"];
+                    [_friendsArray addObject:name];
+                    NSString *place = object[@"place"];
+                    [_placesArray addObject:place];
+                    [_timesArray addObject:time];
+                    
+                    // PFFile *imageFile = object[@"profilePicture"];
+                    
+                    // [_imagesArray addObject: imageFile];
+                    
+                    [self.tableView reloadData];
+                    
+                }
+                
+                // works for iPhone 5S - iPhone 6S Plus
                 if ( ((hour == [self currentHour]) || (hour == [self currentHour] - 1)) && (AMorPM == [self currentAMorPM])) {
                     NSString *name = object[@"name"];
                     [_friendsArray addObject:name];
@@ -114,14 +132,14 @@
                     [_placesArray addObject:place];
                     [_timesArray addObject:time];
                     
-                    PFFile *imageFile = object[@"profilePicture"];
+                    // PFFile *imageFile = object[@"profilePicture"];
                     
-                    [_imagesArray addObject: imageFile];
+                    // [_imagesArray addObject: imageFile];
                     
                     [self.tableView reloadData];
-
-
+                    
                 }
+
             }
             [self.tableView reloadData];
         } else {
@@ -131,7 +149,6 @@
         
     }];
 }
-
 
 
 -(NSString *) currentDate {
@@ -155,59 +172,5 @@
     return [dateFormatter stringFromDate:[NSDate date]];
 }
 
-/*
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
-    return cell;
-}
-*/
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UI
- *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

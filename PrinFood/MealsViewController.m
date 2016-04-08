@@ -33,9 +33,9 @@
     
     // Populated from the database later in the program.
     _TimeArray = [NSMutableArray arrayWithObjects:
-                  @"Couldn't upload the time",
-                  @"Couldn't upload the time",
-                  @"Couldn't upload the time", nil];
+                  @"Couldn't download time",
+                  @"Couldn't download time",
+                  @"Couldn't download time", nil];
     
     // Populates array of times from the database.
     [self queryMealTimes];
@@ -189,11 +189,15 @@
 - (IBAction)segmentButton:(id)sender {
     if (segmentController.selectedSegmentIndex == 0) {
         // Today was chosen.
+        segmentController.backgroundColor = [UIColor colorWithRed:170.0/255.0f green:192.0/255.0f blue:222.0/255.0f alpha:1.0];
+        _BehindDateImage.backgroundColor = [UIColor colorWithRed:170.0/255.0f green:192.0/255.0f blue:222.0/255.0f alpha:1.0];
         _currentDateLabel.text = [self currentDate];
         // Refresh the table.
         [self queryMealTimes];
     } else if (segmentController.selectedSegmentIndex == 1){
         // Tomorrow was chosen.
+        segmentController.backgroundColor = [UIColor colorWithRed:170.0/255.0f green:210.0/255.0f blue:255.0/255.0f alpha:1.0];
+        _BehindDateImage.backgroundColor = [UIColor colorWithRed:170.0/255.0f green:210.0/255.0f blue:255.0/255.0f alpha:1.0];
         _currentDateLabel.text = [self nextDate];
         // Refresh the table.
         [self queryMealTimes];

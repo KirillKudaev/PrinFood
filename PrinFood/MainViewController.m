@@ -49,6 +49,12 @@
     }else if ([[segue identifier] isEqualToString:@"checkIn"]){
         NSString *name = [FBSDKProfile currentProfile].name;
         if (name == nil) {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Oops!"
+                                                            message:@"Please log in with Facebook"
+                                                           delegate:self
+                                                  cancelButtonTitle:@"Ok"
+                                                  otherButtonTitles:nil];
+            [alert show];
             [self performSegueWithIdentifier:@"showLogIn" sender:self];
         }
     }

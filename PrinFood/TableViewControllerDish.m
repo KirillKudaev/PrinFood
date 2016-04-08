@@ -20,7 +20,7 @@
     [super viewDidLoad];
 
     // Populated from the database later in the program.
-    _DishArray =  [NSMutableArray arrayWithObjects: @"Couldn't upload the menu", nil];
+    _DishArray =  [NSMutableArray arrayWithObjects: @"Couldn't download menu", nil];
     
     // Diplays name of the meal in the navigation bar.
     self.navigationItem.title = _MealChosen;
@@ -70,6 +70,10 @@
     TableCellDish *cell = [tableView dequeueReusableCellWithIdentifier:@"TableCellDish" forIndexPath:indexPath];
     long row = [indexPath row];
     cell.DishLabel.text = _DishArray[row];
+    if (cell.DishLabel.text.length > 27) {
+        UIFont *myFont = cell.DishLabel.font;
+        cell.DishLabel.font = [myFont fontWithSize:20];
+    }
     return cell;
 }
 

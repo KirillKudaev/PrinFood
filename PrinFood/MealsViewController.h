@@ -15,6 +15,7 @@
 }
 
 - (IBAction)segmentButton:(id)sender;
+@property (weak, nonatomic) IBOutlet UIImageView *BehindDateImage;
 
 @property (strong, nonatomic) IBOutlet UILabel *currentDateLabel;
 
