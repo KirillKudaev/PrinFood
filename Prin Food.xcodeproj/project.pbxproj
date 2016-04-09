@@ -71,6 +71,7 @@
 
 /* Begin PBXFileReference section */
 		561E6A701C55C08200525CA1 /* square-facebook-512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "square-facebook-512.png"; sourceTree = "<group>"; };
+		56E964AB1CB8D0FD00C2C148 /* Prin Food.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Prin Food.entitlements"; sourceTree = "<group>"; };
 		5C380FA71C06F02F004524CF /* ProfilePictureButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfilePictureButton.h; sourceTree = "<group>"; };
 		5C380FA81C06F02F004524CF /* ProfilePictureButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfilePictureButton.m; sourceTree = "<group>"; };
 		5C380FAE1C07EAE3004524CF /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
@@ -285,6 +286,7 @@
 		5CCF5A9F1BC6497B008F3476 = {
 			isa = PBXGroup;
 			children = (
+				56E964AB1CB8D0FD00C2C148 /* Prin Food.entitlements */,
 				5CCF5AAA1BC6497B008F3476 /* PrinFood */,
 				5C038E0D1BDFDC42001FD98A /* Images */,
 				5CCF5AE61BC64FF3008F3476 /* Frameworks */,
@@ -374,6 +376,14 @@
 					5CCF5AA71BC6497B008F3476 = {
 						CreatedOnToolsVersion = 7.0.1;
 						DevelopmentTeam = S96ZUR62V7;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+							com.apple.Wallet = {
+								enabled = 0;
+							};
+						};
 					};
 				};
 			};

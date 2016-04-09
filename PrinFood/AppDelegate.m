@@ -19,8 +19,7 @@
 
 #pragma mark - Class Methods
 
-+ (void)initialize
-{
++ (void)initialize {
     // Nib files require the type to have been loaded before they can do the wireup successfully.
     // http://stackoverflow.com/questions/1725881/unknown-class-myclass-in-interface-builder-file-error-at-runtime
     [FBSDKLoginButton class];
@@ -30,6 +29,25 @@
 #pragma mark - UIApplicationDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    
+   NSDictionary *remoteNotification = launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey];
+    
+    if (launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey]) {
+        
+        NSString *remoteMessage = remoteNotification[@"aps"][@"alert"];
+        
+        UIAlertController *ac = [UIAlertController alertControllerWithTitle: @"Received on launch" message:remoteMessage preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction *aa = [UIAlertAction actionWithTitle:@"Okay" style:UIAlertActionStyleDefault handler:nil];
+        
+        [ac addAction:aa];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [application.keyWindow.rootViewController presentViewController:ac animated:YES completion:nil];
+        });
+    }
+    
     
     // Poweres the app with Local Datastore.
     // https://parse.com/docs/ios_guide#localdatastore/iOS
@@ -49,9 +67,53 @@
     
     // Observes changes to the [FBSDKAccessToken currentAccessToken].
     [FBSDKProfile enableUpdatesOnAccessTokenChange:YES];
+    
+    
+    // For push notifications.
+    
+    UIUserNotificationType userNotificationTypes = (UIUserNotificationTypeAlert |
+                                                    UIUserNotificationTypeBadge |
+                                                    UIUserNotificationTypeSound);
+    UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:userNotificationTypes
+                                                                             categories:nil];
+    [application registerUserNotificationSettings:settings];
+    [application registerForRemoteNotifications];
 
     
     return YES;
+}
+
+// If the registration is successful, the callback method -application:didRegisterForRemoteNotificationsWithDeviceToken: in the application delegate will be executed. We will need to implement this method and use it to inform Parse about this new device.
+
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    // Store the deviceToken in the current installation and save it to Parse.
+    PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+    [currentInstallation setDeviceTokenFromData:deviceToken];
+    currentInstallation.channels = @[ @"global" ];
+    [currentInstallation saveInBackground];
+    
+}
+
+
+// When a push notification is received while the application is not in the foreground, it is displayed in the iOS Notification Center. However, if the notification is received while the app is active, it is up to the app to handle it. To do so, we can implement the [application:didReceiveRemoteNotification] method in the app delegate. In our case, we will simply ask Parse to handle it for us. Parse will create a modal alert and display the push notification's content.
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)remoteNotification {
+    
+    
+    
+        
+    NSString *remoteMessage =remoteNotification[@"aps"][@"alert"];
+    
+    UIAlertController *ac = [UIAlertController alertControllerWithTitle: @"Received while running" message:remoteMessage preferredStyle:UIAlertControllerStyleAlert];
+        
+    UIAlertAction *aa = [UIAlertAction actionWithTitle:@"Okay" style:UIAlertActionStyleDefault handler:nil];
+        
+    [ac addAction:aa];
+        
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [application.keyWindow.rootViewController presentViewController:ac animated:YES completion:nil];
+    });
+    
 }
 
 // To post process the results from Facebook Login.

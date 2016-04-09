@@ -8,6 +8,7 @@
 
 #import "MainViewController.h"
 #import "LoginViewController.h"
+//  #import <Parse/Parse.h>
 
 @interface MainViewController ()
 
@@ -20,7 +21,14 @@
     
     // profileID: The Facebook ID of the user, place or object for which a picture should be fetched and displayed.
     self.profilePictureButton.profileID = @"me";
-    
+   
+//    Testig Push Notifications
+//    PFQuery *pushQuery = [PFInstallation query];
+//    [pushQuery whereKey:@"deviceType" equalTo:@"ios"];
+//    
+//    // Send push notification to query
+//    [PFPush sendPushMessageToQueryInBackground:pushQuery
+//                                   withMessage:@"Hello World!"];
     
 }
 
