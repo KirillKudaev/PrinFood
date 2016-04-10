@@ -29,11 +29,12 @@
 #pragma mark - UIApplicationDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+
+    [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
     
+    NSDictionary *remoteNotification = launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey];
     
-   NSDictionary *remoteNotification = launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey];
-    
-    if (launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey]) {
+    if (remoteNotification) {
         
         NSString *remoteMessage = remoteNotification[@"aps"][@"alert"];
         
@@ -140,6 +141,10 @@
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+    
+    
+    // Set number of notifications to 0
+    [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
