@@ -44,8 +44,16 @@
         
         [ac addAction:aa];
         
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Oops!"
+                                                        message:remoteMessage
+                                                       delegate:self
+                                              cancelButtonTitle:@"Thanks!"
+                                              otherButtonTitles:nil];
+        [alert show];
+        
         dispatch_async(dispatch_get_main_queue(), ^{
             [application.keyWindow.rootViewController presentViewController:ac animated:YES completion:nil];
+            [alert show];
         });
     }
     
@@ -110,9 +118,17 @@
     UIAlertAction *aa = [UIAlertAction actionWithTitle:@"Okay" style:UIAlertActionStyleDefault handler:nil];
         
     [ac addAction:aa];
-        
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Oops!"
+                                                    message:remoteMessage
+                                                   delegate:self
+                                          cancelButtonTitle:@"Ok"
+                                          otherButtonTitles:nil];
+    [alert show];
+    
     dispatch_async(dispatch_get_main_queue(), ^{
         [application.keyWindow.rootViewController presentViewController:ac animated:YES completion:nil];
+        [alert show];
     });
     
 }
