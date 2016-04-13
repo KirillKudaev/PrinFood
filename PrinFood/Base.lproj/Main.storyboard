@@ -7,7 +7,7 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <mutableArray key="OpenSans2-Semibold.ttf">
+        <mutableArray key="OpenSans-Semibold.ttf">
             <string>OpenSans-Semibold</string>
         </mutableArray>
         <mutableArray key="OpenSans3-Regular.ttf">
