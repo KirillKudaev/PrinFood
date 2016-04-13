@@ -38,25 +38,13 @@
         
         NSString *remoteMessage = remoteNotification[@"aps"][@"alert"];
         
-        UIAlertController *ac = [UIAlertController alertControllerWithTitle: @"Received on launch" message:remoteMessage preferredStyle:UIAlertControllerStyleAlert];
-        
-        UIAlertAction *aa = [UIAlertAction actionWithTitle:@"Okay" style:UIAlertActionStyleDefault handler:nil];
-        
-        [ac addAction:aa];
-        
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Oops!"
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Notification"
                                                         message:remoteMessage
                                                        delegate:self
                                               cancelButtonTitle:@"Thanks!"
                                               otherButtonTitles:nil];
-        [alert show];
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [application.keyWindow.rootViewController presentViewController:ac animated:YES completion:nil];
-            [alert show];
-        });
+        [alert show];   // Displays notification alert inside the app.
     }
-    
     
     // Poweres the app with Local Datastore.
     // https://parse.com/docs/ios_guide#localdatastore/iOS
@@ -99,8 +87,8 @@
     PFInstallation *currentInstallation = [PFInstallation currentInstallation];
     [currentInstallation setDeviceTokenFromData:deviceToken];
     currentInstallation.channels = @[ @"global" ];
+    //currentInstallation.channels = @[ @"Kirill" ];    // Testing.
     [currentInstallation saveInBackground];
-    
 }
 
 
@@ -108,29 +96,14 @@
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)remoteNotification {
     
-    
-    
-        
     NSString *remoteMessage =remoteNotification[@"aps"][@"alert"];
     
-    UIAlertController *ac = [UIAlertController alertControllerWithTitle: @"Received while running" message:remoteMessage preferredStyle:UIAlertControllerStyleAlert];
-        
-    UIAlertAction *aa = [UIAlertAction actionWithTitle:@"Okay" style:UIAlertActionStyleDefault handler:nil];
-        
-    [ac addAction:aa];
-    
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Oops!"
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Notification"
                                                     message:remoteMessage
                                                    delegate:self
-                                          cancelButtonTitle:@"Ok"
+                                          cancelButtonTitle:@"Thanks!"
                                           otherButtonTitles:nil];
-    [alert show];
-    
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [application.keyWindow.rootViewController presentViewController:ac animated:YES completion:nil];
-        [alert show];
-    });
-    
+    [alert show];   // Displays notification alert inside the app.
 }
 
 // To post process the results from Facebook Login.
