@@ -7,11 +7,11 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <mutableArray key="OpenSans-Semibold.ttf">
-            <string>OpenSans-Semibold</string>
-        </mutableArray>
-        <mutableArray key="OpenSans3-Regular.ttf">
+        <mutableArray key="OpenSans-Regular.ttf">
             <string>OpenSans</string>
+        </mutableArray>
+        <mutableArray key="OpenSans2-Semibold.ttf">
+            <string>OpenSans-Semibold</string>
         </mutableArray>
     </customFonts>
     <scenes>
@@ -705,14 +705,6 @@
                                 </view>
                                 <blurEffect style="light"/>
                             </visualEffectView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="USf-4W-P7H">
-                                <rect key="frame" x="0.0" y="64" width="207" height="617"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" backgroundImage="dining room3@2x-01.png"/>
-                                <connections>
-                                    <segue destination="BYZ-38-t0r" kind="show" id="Esa-3d-aRZ"/>
-                                </connections>
-                            </button>
                             <button autoresizesSubviews="NO" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L2T-ly-TlO">
                                 <rect key="frame" x="207" y="64" width="207" height="617"/>
                                 <color key="backgroundColor" red="0.61960784310000006" green="0.51764705879999995" blue="0.29803921570000003" alpha="1" colorSpace="calibratedRGB"/>
@@ -779,6 +771,14 @@
                                 <color key="textColor" red="0.070588235289999995" green="0.30980392159999998" blue="0.52156862749999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="USf-4W-P7H">
+                                <rect key="frame" x="0.0" y="64" width="207" height="617"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" backgroundImage="dining room3@2x.png"/>
+                                <connections>
+                                    <segue destination="BYZ-38-t0r" kind="show" id="Esa-3d-aRZ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -870,7 +870,7 @@
                                     </mask>
                                 </variation>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background_muffin4@2x-01.png" translatesAutoresizingMaskIntoConstraints="NO" id="sXQ-85-mwZ">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background_muffin3@2x-01.png" translatesAutoresizingMaskIntoConstraints="NO" id="sXQ-85-mwZ">
                                 <rect key="frame" x="147" y="288" width="120" height="120"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="sXQ-85-mwZ" secondAttribute="height" multiplier="1:1" id="JKu-Sc-Oz3"/>
@@ -883,7 +883,7 @@
                                     </mask>
                                 </variation>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6t1-hn-KHJ">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6t1-hn-KHJ">
                                 <rect key="frame" x="107" y="565" width="200" height="32"/>
                                 <color key="backgroundColor" white="1" alpha="0.23999999999999999" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -898,13 +898,13 @@
                                     <segue destination="9Bt-8h-Ujw" kind="showDetail" identifier="continue" id="jGR-Sf-pbT"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Prin Food" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Owv-6Q-2ba">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Prin Food" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Owv-6Q-2ba">
                                 <rect key="frame" x="138" y="433" width="138" height="41"/>
                                 <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="30"/>
                                 <color key="textColor" red="0.070588235289999995" green="0.30980392159999998" blue="0.52156862749999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oNY-qn-c7O" customClass="FBSDKLoginButton">
+                            <view opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oNY-qn-c7O" customClass="FBSDKLoginButton">
                                 <rect key="frame" x="105" y="504" width="204" height="44"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -1047,19 +1047,19 @@
     </scenes>
     <resources>
         <image name="arrow39.png" width="32" height="32"/>
-        <image name="background_muffin4@2x-01.png" width="4096" height="3941"/>
+        <image name="background_muffin3@2x-01.png" width="4096" height="3941"/>
         <image name="blueblur.png" width="800" height="800"/>
         <image name="burg.jpg" width="891" height="501"/>
         <image name="contacts1@2x-01.png" width="490" height="489"/>
-        <image name="dining room3@2x-01.png" width="207" height="617"/>
+        <image name="dining room3@2x.png" width="1169" height="777"/>
         <image name="eggs.jpg" width="1944" height="1296"/>
         <image name="pub3@2x-01.png" width="207" height="617"/>
         <image name="smooth.jpg" width="1169" height="777"/>
         <image name="smoothie.jpg" width="310" height="206"/>
-        <image name="square-facebook-512.png" width="512" height="512"/>
+        <image name="square-facebook-512.png" width="256" height="256"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Wfp-c1-Rrb"/>
-        <segue reference="hsG-c2-kvQ"/>
+        <segue reference="Tmr-OP-g9h"/>
     </inferredMetricsTieBreakers>
 </document>

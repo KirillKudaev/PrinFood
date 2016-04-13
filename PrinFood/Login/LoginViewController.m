@@ -56,6 +56,7 @@
     
     // Requesting additional read permissions.
     self.loginButton_.readPermissions = @[@"public_profile", @"user_friends"];
+    self.continueButton_.layer.cornerRadius = 2;
     
     // If there's already a cached token, read the profile information.
     if ([FBSDKAccessToken currentAccessToken]) {
